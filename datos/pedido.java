@@ -96,8 +96,17 @@ public class pedido {
         if (id == 0) break;
         producto prod = traerProducto(id);
         if (prod != null) {
-            p.getLstProductos().add(prod);
-            System.out.println("Producto agregado al pedido.");
+            System.out.println("Cantidad deseada: ");
+            int cantidad = sc.nextInt();
+            if(prod.getStock() >= cantidad){
+
+                 p.getLstProductos().add(prod);
+                 prod.setStock(prod.getStock() - cantidad);
+                 System.out.println("Producto agregado al pedido.");
+                
+            }else{
+                System.out.println("Stock insuficiente. Disponible: " + prod.getStock());
+            }
         } else {
             System.out.println("Producto no encontrado.");
         }
